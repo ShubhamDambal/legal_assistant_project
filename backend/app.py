@@ -1,13 +1,15 @@
-from flask import Flask
+# backend/app.py
+
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from config import Config  # Import the configuration class
 
 # Initialize the Flask application
 app = Flask(__name__)
 
-# Configure the SQLAlchemy database (example: SQLite, change as per your database)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Load configuration from the Config class
+app.config.from_object(Config)
 
 # Initialize the database
 db = SQLAlchemy(app)
@@ -23,6 +25,10 @@ app.register_blueprint(legal_info_bp)
 @app.route('/')
 def home():
     return "Hello, Flask!"
+
+@app.route('/render')
+def render():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

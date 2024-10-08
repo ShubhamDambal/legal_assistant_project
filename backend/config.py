@@ -2,6 +2,7 @@
 
 import os
 
+# Get the absolute path to the directory containing this file
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:

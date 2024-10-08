@@ -1,11 +1,20 @@
-from flask import Blueprint
+# backend/routes/legal_info_routes.py
 
-# Create a Blueprint for legal information routes
-legal_info_bp = Blueprint('legal_info', __name__)
+from flask import Blueprint, jsonify
+from models import LegalInfo
 
-# Define a route under the blueprint
-@legal_info_bp.route('/legal-info')
-def legal_info():
-    return "This is the legal information page."
+legal_info_bp = Blueprint('legal_info_bp', __name__)
 
-# You can add more routes to handle different legal information logic here
+#When client makes a GET request to this endpoint, the function below it is called.(200 = success)
+@legal_info_bp.route('/', methods=['GET'])
+def get_all_legal_info():
+    legal_infos = LegalInfo.query.all()
+    return jsonify([info.to_dict() for info in legal_infos]), 200
+
+@legal_info_bp.route('/<category>', methods=['GET'])
+def get_legal_info_by_category(category):
+    info = LegalInfo.query.filter_by(category=category).first()
+    if info:
+        return jsonify(info.to_dict()), 200
+    else:
+        return jsonify({'message': 'Category not found.'}), 404
