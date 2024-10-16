@@ -5,6 +5,7 @@ from flask_cors import CORS
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from werkzeug.exceptions import HTTPException
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -29,6 +30,27 @@ app.register_blueprint(feedback_bp, url_prefix='/api/feedback')
 @app.route('/')
 def home():
     return jsonify({'message': 'Welcome to the Legal Assistant API'})
+
+# Error handler for HTTP exceptions
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    response = e.get_response()
+    response.data = jsonify({
+        "error": e.name,
+        "description": e.description,
+    }).data
+    response.content_type = "application/json"
+    return response
+
+# Error handler for non-HTTP exceptions
+@app.errorhandler(Exception)
+def handle_generic_exception(e):
+    """Handle non-HTTP exceptions."""
+    return jsonify({
+        "error": "Internal Server Error",
+        "description": str(e)
+    }), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
