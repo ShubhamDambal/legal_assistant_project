@@ -1,0 +1,9 @@
+.main-container{
+    width: 20vw;
+}
+
+.sidebar{
+    background-color: black;
+    color: aliceblue;
+    height: 100vh;
+}

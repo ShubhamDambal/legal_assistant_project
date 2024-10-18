@@ -1,0 +1,38 @@
+.back{
+    background-color:  #FFBE98;
+    height: 18vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#but{
+    color: aliceblue;
+    background-color: #F05A7E;
+    border-color: #F05A7E;
+    border: none;
+    font-size: 15px;
+    height: 31px;
+}
+
+#but:hover{
+    background-color: #f81c4f;
+}
+
+input{
+    margin-right: 10px;
+    height: 27px;
+    width: 300px;
+    outline: none;
+}
+
+p{
+    color: rgb(82, 82, 82);
+    font-weight: 500;
+}

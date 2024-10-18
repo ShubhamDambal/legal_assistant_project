@@ -1,0 +1,20 @@
+.Log{
+    height:72vh;
+    background-color: #F05A7E;
+    text-align: center;
+
+}
+
+img{
+    margin-top: 70px;
+    height: 270px;
+    margin-bottom: 10px;
+}
+
+h1{
+    font-family: sans-serif;
+    color: aliceblue;
+    font-size: 35px;
+    font-weight: 400;
+    margin: 10px;
+}
