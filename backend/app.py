@@ -1,11 +1,12 @@
 # backend/app.py
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
+import database  # Import the database module
 
 import logging
 from logging.handlers import RotatingFileHandler
@@ -14,6 +15,9 @@ import os
 # Initialize Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Initialize the database with the app
+database.init_app(app)
 
 # Initialize extensions
 CORS(app)  # Enable CORS
@@ -34,6 +38,28 @@ app.register_blueprint(feedback_bp, url_prefix='/api/feedback')
 @app.route('/')
 def home():
     return jsonify({'message': 'Welcome to the Legal Assistant API'})
+
+# New route to fetch sample data from SQLite database
+@app.route('/fetch_sample_data', methods=['GET'])
+def fetch_sample_data():
+    """Fetches data from the SQLite database and returns it as JSON."""
+    db = database.get_db()
+    cursor = db.execute('SELECT * FROM your_table_name')  # Replace with your actual table name
+    data = cursor.fetchall()
+    return jsonify([dict(row) for row in data])
+
+# New route to insert sample data into SQLite database
+@app.route('/insert_sample_data', methods=['POST'])
+def insert_sample_data():
+    """Inserts sample data into the SQLite database."""
+    db = database.get_db()
+    data = request.get_json()  # Expecting JSON input
+    db.execute(
+        'INSERT INTO your_table_name (column1, column2) VALUES (?, ?)',  # Replace with your actual table name and columns
+        (data['column1'], data['column2'])
+    )
+    db.commit()
+    return jsonify({"message": "Data inserted successfully"}), 201
 
 # Error handler for HTTP exceptions
 @app.errorhandler(HTTPException)
