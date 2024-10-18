@@ -500,3 +500,4 @@ $Env:PATH = "$VenvExecDir$([System.IO.Path]::PathSeparator)$Env:PATH"
 # 2LYPSAYFMi3cmF6Df84iIG2d0qj0x3ioXDUUk72YTCUO1Xnz9jkHSCU7Bq2GL9uP
 # z4sEyNDU23dEmfGD672vMRuZ6Ua/ks5J
 # SIG # End signature block
+#$env:Path += ";C:\Program Files\Heroku\bin"
