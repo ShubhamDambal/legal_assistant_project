@@ -44,7 +44,7 @@ def home():
 def fetch_sample_data():
     """Fetches data from the SQLite database and returns it as JSON."""
     db = database.get_db()
-    cursor = db.execute('SELECT * FROM your_table_name')  # Replace with your actual table name
+    cursor = db.execute('SELECT * FROM data_table')  # Replace with your actual table name
     data = cursor.fetchall()
     return jsonify([dict(row) for row in data])
 
