@@ -1,6 +1,4 @@
 // src/components/LegalInfo.js
-//This React component will fetch and display the legal information from your Flask API.
-
 import React, { useEffect, useState } from 'react';
 import apiClient from '../api/apiClient';
 
@@ -12,7 +10,7 @@ const LegalInfo = () => {
   useEffect(() => {
     const fetchLegalInfo = async () => {
       try {
-        const response = await apiClient.get('/legal-info'); // Flask endpoint
+        const response = await apiClient.get('/legal_info'); // Flask endpoint
         setLegalInfo(response.data);
         setLoading(false);
       } catch (error) {
@@ -36,8 +34,11 @@ const LegalInfo = () => {
     <div>
       <h2>Legal Information</h2>
       <ul>
-        {legalInfo.map((info, index) => (
-          <li key={index}>{info}</li>
+        {legalInfo.map((info) => (
+          <li key={info.id}>
+            <strong>Category:</strong> {info.category} <br />
+            <strong>Content:</strong> {info.content}
+          </li>
         ))}
       </ul>
     </div>
