@@ -1,38 +1,53 @@
+/* src/App.css */
+/*This file will contain global styles for your entire application, affecting all the components. */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa; /* Light grey background for a clean look */
+  color: #333; /* Dark grey text color for readability */
+}
+
 .App {
   text-align: center;
+  padding: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: #007bff; /* Blue color for main headings */
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  color: #495057; /* Darker shade for subheadings */
+  margin-bottom: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul {
+  list-style-type: none; /* Remove default list bullets */
+  padding: 0;
 }
 
-.App-link {
-  color: #61dafb;
+li {
+  background-color: #ffffff; /* White background for each item */
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #dee2e6; /* Light grey border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c757d; /* Slightly lighter text for paragraph content */
+}
+
+a {
+  color: #007bff; /* Blue color for links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
